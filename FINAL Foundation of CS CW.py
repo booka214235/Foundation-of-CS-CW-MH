@@ -104,3 +104,28 @@ pc2 = [
 
 rotations = [1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,1]
 # ------------------------------------------------------------------------------------------------------------------------------------
+# helping functions
+# ------------------------------------------------------------------------------------------------------------------------------------
+
+# function to convert from hexadeciaml to Binary
+def hex_2_bin(hex_text,bits=64):
+    
+    h= hex_text.strip().replace('0x', '').replace(' ', '')          # for formating 
+    if h == "":                                                     # check if the message was empty (edge case)
+        print ("empty input")
+        return None
+    
+    valid_chars = "0123456789abcdefABCDEF"                          #check if the input is a valid hexadeciaml number
+    for char in h:
+        if char not in valid_chars :
+            print(f" this'{char}' is not heaxadeciaml number")
+            return None
+        
+    bits_list = []
+    value = int(h, 16)
+    for i in range(bits):
+        index = bits - 1 - i
+        shift_value = value >> index
+        bit = shift_value & 1 
+        bits_list.append(bit)
+    return bits_list
