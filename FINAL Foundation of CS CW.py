@@ -129,3 +129,16 @@ def hex_2_bin(hex_text,bits=64):
         bit = shift_value & 1 
         bits_list.append(bit)
     return bits_list
+
+
+# function to convert from Binary to hexadeciaml
+def permutation(bits,table):
+    result =[]
+    for new_position in range(len(table)):
+
+        original_position = table[new_position]
+        original_index = original_position - 1
+        bit = bits[original_index]
+        result.append(bit)
+
+    return result
