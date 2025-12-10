@@ -155,3 +155,21 @@ def permutation(bits,table):
         result.append(bit)
 
     return result
+
+
+# XOR function 
+def xor (a,b):
+    if len(a) != len(b):
+        print("Error: Lists must be same length")
+        return None
+     
+    result = []
+    for i in range(len(a)):
+        bit_a = a[i]
+        bit_b = b[i]
+        if bit_a == bit_b:
+            result.append(0)
+        else:
+            result.append(1)
+    
+    return result
