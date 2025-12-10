@@ -207,6 +207,7 @@ def s_boxes(bits48):
 
 # main function 
 
+
 # key generation function
 def key_gen (key_hex):
     k = hex_2_bin(key_hex)
@@ -257,12 +258,47 @@ def DES_decrypt(ct_hex,key_hex):
     out = permutation(out,FP)
     return bits_2_hexa(out) 
 
-# data = input("enter yout hexadecimal data to encrypte: ")
-# cypher_text = input("enter your encrypted data to decode: ")
-# key = input("enter the key: ")
+# ---------------------------------------------------------------------------------------------------------------------------------
 
-# x = DES_ENCRYPTION(data,key) 
-# y = DES_decrypt(cypher_text,key)
+#calling and testing 
 
-# print(f"the encryption for your data is {x}")
-# print(f"the decryption for your data is {y}")
+password = input("Enter password to access: ")
+if password != "12345":  
+    print("Wrong password.")
+    exit() 
+
+print("=" * 60)
+print("DES ENCRYPTION/DECRYPTION IMPLEMENTATION")
+print("=" * 60)
+while True:
+        print("\nOptions:")
+        print("1. Encrypt a message")
+        print("2. Decrypt a message")
+        print("3. Exit")
+        
+        
+        choice = input("\nEnter your choice (1-3): ")
+        
+        if choice == '1':
+            
+                plaintext = input("Enter 16-character hexadecimal plaintext (ex 0123456789ABCDEF): ")
+                key = input("Enter 16-character hexadecimal key (ex 133457799BBCDFF1): ")
+                ciphertext = DES_ENCRYPTION(plaintext, key)
+                print(f"\n Encryption successful!")
+                print(f"   Plaintext:  {plaintext}")
+                print(f"   Key:        {key}")
+                print(f"   Ciphertext: {ciphertext}")
+        
+        elif choice == '2':
+            
+                cypher = input("Enter 16-character hexadecimal cypher (ex 85E813540F0AB405): ")
+                key = input("Enter 16-character hexadecimal key (ex 133457799BBCDFF1): ")
+                plaintext = DES_decrypt(cypher, key)
+                print(f"\n Decryption successful!")
+                print(f"   cypher:  {cypher}")
+                print(f"   Key:        {key}")
+                print(f"   Ciphertext: {plaintext}")
+        
+        elif choice == '3':
+            print("\nExiting program. Goodbye!")
+            break
