@@ -173,3 +173,11 @@ def xor (a,b):
             result.append(1)
     
     return result
+
+
+# shifting function 
+def shift_left(list,n):
+    list1 = list[n:]
+    list2 = list[:n]
+
+    return list1 + list2
