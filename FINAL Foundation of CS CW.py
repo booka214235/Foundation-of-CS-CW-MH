@@ -132,16 +132,19 @@ def hex_2_bin(hex_text,bits=64):
 
 
 # function to convert from Binary to hexadecimal
-def permutation(bits,table):
-    result =[]
-    for new_position in range(len(table)):
+def bits_2_hexa(bits):
+    result = ""
+    for i in bits:
+        bit_str = str(i)
+        result += bit_str
+    
+    value = int(result,2)
 
-        original_position = table[new_position]
-        original_index = original_position - 1
-        bit = bits[original_index]
-        result.append(bit)
+    hex_digits = (len(bits) + 3)//4
 
-    return result
+    hex_str = format(value, f'0{hex_digits}X')
+
+    return hex_str
 
 
 # function for making shuffle or permutations 
@@ -199,3 +202,23 @@ def s_boxes(bits48):
         result.append((value >> 1) & 1)
         result.append(value & 1)
     return result
+
+# ---------------------------------------------------------------------------------------------------------------------
+
+# main function 
+
+# key generation function
+def key_gen (key_hex):
+    k = hex_2_bin(key_hex)
+    if k is None:  
+        return None
+    k = permutation(k,pc1)
+    c = k[:28]
+    d = k[28:]
+    keys=[]
+    for r in rotations:
+        c=shift_left(c,r)
+        d=shift_left(d,r)
+        cd=c+d
+        keys.append(permutation(cd,pc2))
+    return keys
