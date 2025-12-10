@@ -39,7 +39,7 @@ P = [
 19,13,30,6,
 22,11,4,25]
 
-s_boxes = [
+s_boxes_table = [
 # S1
 [14,4,13,1,2,15,11,8,3,10,6,12,5,9,0,7,
  0,15,7,4,14,2,13,1,10,6,12,11,9,5,3,8,
@@ -181,3 +181,21 @@ def shift_left(list,n):
     list2 = list[:n]
 
     return list1 + list2
+
+
+# s box function
+def s_boxes(bits48):
+    result = []
+    for i in range(0,48,6):
+        six_bits = bits48[i:i+6]
+        
+        row = (six_bits[0] << 1) | six_bits[5]
+        col = (six_bits[1] << 3) | (six_bits[2] << 2) | (six_bits[3] << 1) | six_bits[4]
+        sbox_num = i // 6
+        value = s_boxes_table[sbox_num][row * 16 + col]
+        
+        result.append((value >> 3) & 1)
+        result.append((value >> 2) & 1)
+        result.append((value >> 1) & 1)
+        result.append(value & 1)
+    return result
