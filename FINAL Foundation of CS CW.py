@@ -222,3 +222,11 @@ def key_gen (key_hex):
         cd=c+d
         keys.append(permutation(cd,pc2))
     return keys
+
+
+# FEISTEl function
+def FEISTEl_function(Right_side,K):
+    expansion = permutation(Right_side,E) 
+    x = xor(expansion,K)
+    s = s_boxes(x)
+    return permutation(s, P)
