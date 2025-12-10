@@ -230,3 +230,36 @@ def FEISTEl_function(Right_side,K):
     x = xor(expansion,K)
     s = s_boxes(x)
     return permutation(s, P)
+
+
+# Encryption Function 
+def DES_ENCRYPTION(info,key_hex):
+    pt=hex_2_bin(info)
+    k=key_gen(key_hex)
+    first_perm=permutation(pt,IP)
+    L=first_perm[:32]; R=first_perm[32:]
+    for i in range(16):
+        L, R = R, xor(L, FEISTEl_function(R, k[i]))
+    output = R+L
+    output = permutation(output,FP)
+    return bits_2_hexa(output)
+
+
+#Decryption Function 
+def DES_decrypt(ct_hex,key_hex):
+    ct=hex_2_bin(ct_hex)
+    k=key_gen(key_hex)
+    st=permutation(ct,IP)
+    L=st[:32]; R=st[32:]
+    for i in range(16):
+        L,R = R, xor(L,FEISTEl_function(R,k[15-i]))
+    out = R+L
+    out = permutation(out,FP)
+    return bits_2_hexa(out) 
+
+# data = input("enter yout hexadecimal data to encrypte: ")
+# cypher_text = input("enter your encrypted data to decode: ")
+# key = input("enter the key: ")
+
+# x = DES_ENCRYPTION(data,key) 
+# y = DES_decrypt(cypher_text,key)
