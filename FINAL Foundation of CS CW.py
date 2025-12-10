@@ -263,3 +263,6 @@ def DES_decrypt(ct_hex,key_hex):
 
 # x = DES_ENCRYPTION(data,key) 
 # y = DES_decrypt(cypher_text,key)
+
+# print(f"the encryption for your data is {x}")
+# print(f"the decryption for your data is {y}")
