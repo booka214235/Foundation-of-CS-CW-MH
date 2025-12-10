@@ -110,7 +110,7 @@ rotations = [1,1,2,2,2,2,2,2,1,2,2,2,2,2,2,1]
 # function to convert from hexadeciaml to Binary
 def hex_2_bin(hex_text,bits=64):
     
-    h= hex_text.strip().replace('0x', '').replace(' ', '')          # for formating 
+    h= hex_text.strip().replace('0x', '').replace(' ', '').upper()          # for formating 
     if h == "":                                                     # check if the message was empty (edge case)
         print ("empty input")
         return None
@@ -271,34 +271,34 @@ print("=" * 60)
 print("DES ENCRYPTION/DECRYPTION IMPLEMENTATION")
 print("=" * 60)
 while True:
-        print("\nOptions:")
-        print("1. Encrypt a message")
-        print("2. Decrypt a message")
-        print("3. Exit")
+    print("\nOptions:")
+    print("1. Encrypt a message")
+    print("2. Decrypt a message")
+    print("3. Exit")
         
         
-        choice = input("\nEnter your choice (1-3): ")
+    choice = input("\nEnter your choice (1-3): ")
         
-        if choice == '1':
+    if choice == '1':
             
-                plaintext = input("Enter 16-character hexadecimal plaintext (ex 0123456789ABCDEF): ")
-                key = input("Enter 16-character hexadecimal key (ex 133457799BBCDFF1): ")
-                ciphertext = DES_ENCRYPTION(plaintext, key)
-                print(f"\n Encryption successful!")
-                print(f"   Plaintext:  {plaintext}")
-                print(f"   Key:        {key}")
-                print(f"   Ciphertext: {ciphertext}")
+        plaintext = input("Enter 16-character hexadecimal plaintext (ex 0123456789ABCDEF): ")
+        key = input("Enter 16-character hexadecimal key (ex 133457799BBCDFF1): ")
+        ciphertext = DES_ENCRYPTION(plaintext, key)
+        print(f"\n Encryption successful!")
+        print(f"   Plaintext:  {plaintext}")
+        print(f"   Key:        {key}")
+        print(f"   Ciphertext: {ciphertext}")
         
-        elif choice == '2':
+    elif choice == '2':
             
-                cypher = input("Enter 16-character hexadecimal cypher (ex 85E813540F0AB405): ")
-                key = input("Enter 16-character hexadecimal key (ex 133457799BBCDFF1): ")
-                plaintext = DES_decrypt(cypher, key)
-                print(f"\n Decryption successful!")
-                print(f"   cypher:  {cypher}")
-                print(f"   Key:        {key}")
-                print(f"   Ciphertext: {plaintext}")
+        cypher = input("Enter 16-character hexadecimal cypher (ex 85E813540F0AB405): ")
+        key = input("Enter 16-character hexadecimal key (ex 133457799BBCDFF1): ")
+        plaintext = DES_decrypt(cypher, key)
+        print(f"\n Decryption successful!")
+        print(f"   cypher:  {cypher}")
+        print(f"   Key:        {key}")
+        print(f"   Ciphertext: {plaintext}")
         
-        elif choice == '3':
-            print("\nExiting program. Goodbye!")
-            break
+    elif choice == '3':
+        print("\nExiting program. Goodbye!")
+        break
